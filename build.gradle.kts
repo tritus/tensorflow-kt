@@ -4,9 +4,8 @@ plugins {
     kotlin("multiplatform") version "1.3.72"
 }
 
-repositories {
-    mavenCentral()
-}
+group = "org.tritus.tensorflowkt"
+version = "0.0.1"
 
 val kotlinNativeDataPath = System.getenv("KONAN_DATA_DIR")?.let { File(it) }
     ?: File(System.getProperty("user.home")).resolve(".konan")
@@ -37,6 +36,10 @@ kotlin {
             val tensorflowInterop by creating  {
                 includeDirs(tensorflowHome.resolve("include"))
             }
+        }
+
+        dependencies {
+            commonMainImplementation(kotlin("stdlib-common"))
         }
     }
 }
